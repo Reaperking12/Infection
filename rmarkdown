@@ -109,6 +109,8 @@ analysis <- overall %>%
 ```
 # Introduction
  
+Healthcare-associated infections(HAIs)include central line-associated bloodstream infections, catheter-associated urinary tract infections, and ventilator-associated pneumonia. In addition, infections can occur during surgery sites. HAIs are one of the top 5 leading cause of death, however it is the most preventable cause of death. Developing countries have a higher rate of HAIs because they did not have laws, guidelines, methodology, and tools for surveillance and prevention of HAIS.    
+ 
 ```{r variable-change, echo=FALSE}
 analysis2<-analysis %>%
   rename(
@@ -199,9 +201,10 @@ In the two sample t-test there was a significant difference in the length of tim
 In the Chi-squared test the relation between these variables was significant, $\chi^2$ (`r chisqdf`,N=`r nrow(analysis)`=`r round(stat,2)`), p=`r scales::pvalue(chi_p,0.001,add_p = FALSE)`. hospital acquired infections are more deadly then community acquired infections. 
 ```{=html}
 <br>
-<p id="fig:ctnsamples", style="color:gray;" class = "caption">
+<p id="fig:ctnsamples", style="color:gray;", class = "caption">
 Table 1: Demographic Data on `r nrow(analysis)` people screened for infection in the INICC database.
 </p>
+<center>
 ```
 ```{r building-table}
 analysis %>%
@@ -209,11 +212,11 @@ analysis %>%
 ```
 ```{=html}
 <br>
-
-<p >
+<p>
 Figure 1: Sample Size Illustration of Source Data.
 </p>
 <center>
+```
 
 ```{r building-histogram, fig.width=8}
 analysis %>%
@@ -225,6 +228,10 @@ analysis %>%
 ```
 ```{=html}
 <br>
+<p>
+Figure 2: Boxplot for Distribution of aquired infection by Days to Discharge 
+</p>
+<center>
 ```
 ```{r building-boxplot, fig.width=8}
 analysis %>%
@@ -236,6 +243,13 @@ analysis %>%
   ggthemes::theme_few() +
   theme(axis.text.y  = element_blank(),
         axis.ticks.y = element_blank())
+```
+```{=html}
+<br>
+<p >
+Figure 3: Violin Graph for Distribution of aquired infection by Days to Discharge 
+</p>
+<center>
 ```
 ```{r building-violin, fig.width=8,warning=FALSE}
 analysis %>%
@@ -250,6 +264,15 @@ analysis %>%
         axis.ticks.x = element_blank(),
         axis.title.x = element_blank())
 ```
+
+```{=html}
+<br>
+<p >
+Figure 4: Sample Size Illustration of Source Data for Fatality by Days to Dishcarge
+</p>
+<center>
+```
+
 ```{r fatality-plot, fig.width=8,warning=FALSE}
 analysis %>%
  subset(outcome !="Error") %>%
@@ -258,8 +281,17 @@ analysis %>%
   labs(title = "Days to Dischage by fatality",
         y= "number of patients") +
   coord_cartesian(xlim = c(0, 100), expand = FALSE)
+```
 
+```{=html}
+<br>
+<p >
+Figure 5: Boxplot of Source Data for Fatality by Days to Dishcarge
+</p>
+<center>
+```
 
+```{r fatality-boxplot, fig.width=8,warning=FALSE}
 analysis %>%
   subset(outcome !="Error") %>%
   ggplot(aes(`Days to Discharge`, outcome, color=outcome)) +
@@ -270,8 +302,17 @@ analysis %>%
     ggthemes::theme_few() +
   theme(axis.text.y  = element_blank(),
         axis.ticks.y = element_blank())
+```
 
+```{=html}
+<br>
+<p >
+Figure 6: violin of Source Data for Fatality by Days to Dishcarge
+</p>
+<center>
+```
 
+```{r fatality-violin, fig.width=8,warning=FALSE}
 analysis %>%
   subset(outcome !="Error") %>%
   ggplot(aes(outcome,`Days to Discharge`,color=outcome)) +
@@ -281,8 +322,16 @@ analysis %>%
   coord_cartesian(ylim = c(0, 100))+
   ggthemes::theme_few()+
   theme(axis.title.x = element_blank())
-#  
 ```
+
+```{=html}
+<br>
+<p >
+Figure 7: Beeswarm graph of Source Data for Fatality by Days to Dishcarge
+</p>
+<center>
+```
+
 ```{r slice-sample, fig.width=8}
 set.seed(42)
 library(ggbeeswarm)
