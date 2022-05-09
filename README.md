@@ -1,5 +1,5 @@
 # Infection
-rmarkdown analysis on infection data from INICC. This is a research paper was created with r and the reasearch project was turned into a r package. This study aimed to examine the differences between Healthcare-associated infections(HAIs) and community/ hospital aquired infections.
+rmarkdown analysis of INICC infection data This is a research article written in R, with the research project turned into a R package. The purpose of this study was to look into the distinctions between HAIs and community/hospital acquired illnesses.
 ![Infection Analysis_Page_1](https://user-images.githubusercontent.com/39630737/167329372-55230786-81ee-47e4-b3b9-29f0ac2cee35.jpg)
 ![Infection Analysis_Page_2](https://user-images.githubusercontent.com/39630737/167329389-0e8443ff-9bdb-46e5-a78e-e752032be1ba.jpg)
 ![Infection Analysis_Page_3](https://user-images.githubusercontent.com/39630737/167329390-1e533833-9fbd-47df-a15b-e4416a9bde16.jpg)
