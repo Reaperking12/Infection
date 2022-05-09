@@ -109,7 +109,7 @@ analysis <- overall %>%
 ```
 # Introduction
  
-Healthcare-associated infections(HAIs)include central line-associated bloodstream infections, catheter-associated urinary tract infections, and ventilator-associated pneumonia. In addition, infections can occur during surgery sites. HAIs are one of the top 5 leading cause of death, however it is the most preventable cause of death. Developing countries have a higher rate of HAIs because they did not have laws, guidelines, methodology, and tools for surveillance and prevention of HAIS.    
+Healthcare-associated infections(HAIs) include central line-associated bloodstream infections, catheter-associated urinary tract infections, and ventilator-associated pneumonia. In addition, infections can occur during surgery sites. HAIs are one of the top 5 leading cause of death, however it is the most preventable cause of death. Developing countries have a higher rate of HAIs because they did not have laws, guidelines, methodology, and tools for surveillance and prevention of HAIs. This study aimed to examine the differences between HAIs and community aquired infections.
  
 ```{r variable-change, echo=FALSE}
 analysis2<-analysis %>%
@@ -182,11 +182,11 @@ hos_sd<-analysis2 %>%
 The synthetic dataset of INICC Data contained `r nrow(overall)` records and it was filtered to remove acquired infection data that were negative or that passed a year. A total of  `r nrow(overall) - nrow(analysis)` records were removed.
 Analyses were conducted with `r stringr::word(R.Version()$version.string, 1, 3)` with the `tidyverse` (`r packageVersion("tidyverse")`), `rUM` (`r packageVersion("rUM")`), `table1` (`r packageVersion("tidyverse")`), `infer` (`r packageVersion("infer")`), `scales` (`r packageVersion("scales")`) packages used to preprocess and summarize data.[@R-base; @R-tidyverse; @tidyverse2019; @R-rUM; @R-table1, @R-infer, @R-scales]
 
- Middle East & North Africa has the highest number of fatal numbers for both community and hospital infections compared to other regions. Middle East & North Africa has the highest mean and median of days to discharge compared to other regions. South Asia has the highest number of nonfatal rates for both community and hospital infections and has the lowest mean of days to discharge. East Asia & Pacific has the lowest number of fatal rates for both community and hospital infections. Europe & Central Asia has the lowest number of nonfatal rates for both community and hospital infections.
+Within the dataset, the variables height and weight could not import as numeric because there were values that had characters in them or were just marked as character values.Both the height and weight variables had values that contained CBR, cbr, and _ _. Specifically the weight variable had problematic values that were marked as character values because it contained a k or kg at the end of it. Specifically the height variable had problematic values that were marked as a character because there were the letters CM at the end of the number or that the value contained a comma where there should had been a decimal point. There are mixed measurements within the dataset. Within height there are meters and centimeters measurements. Within the dataset for weight there are Kilograms and pounds measurements. There may be some data that are switch between the height and the weight variables.
 
 I used boxplot, histogram, and violin all these methods were benefical in presenting the particularly deadly time periods for the hospital or community acquired infections. I feel that histogram is the beneficial cause it shows the central tendency of the data presenting that it is right leaning. The challenge of histogram is that it grouped the data as a range so it is hard to tell where the specific mean is located. Both boxplot and violin is benefical in presenting the deadly time periods. They both present where a bulk of the data is located for fatal, non-fatal, hositpal, and community acquired infection. In addition, they both show where the mean is located on the graph. I used the slice sample function to get a more closer look to the central tendency of the graph.
 
-I think the graph that summarizes the impact of a hospital acquired infection is the box plot. It shows that hospital has a larger inter quatile range than community infection. In addition it shows that hospital has a higher mean as well. I used coord_cartesian where I saw that most of the data was located. Majority of the data was clustered within the first 100 days which is the reason why the graph is zoomed in on the first 100 days. 
+I think the graph that summarizes the impact of a hospital acquired infection is the box plot. It presents the differences between community and hospital aquired infection's interquatile range and mean. I used coord_cartesian where I saw that most of the data was located. Majority of the data was clustered within the first 100 days which is the reason why the graph is zoomed in on the first 100 days. 
 
 A two sample t-test was conducted for differences in the length of hospital stay for the community vs. hospital acquired infection.
 
@@ -194,7 +194,7 @@ A chi-squared test of independence was conducted for a difference in the probabi
 
 # Results
 
-The data for both Height and weight could not import as numeric because there are values that have letters in them or are just characters.Both height and weight have values that are CBR, cbr and the first value they have is _ _. Weight problematic values are where there is a k or kg next to a number. Height problematic values are when there are CM next to a number or when there are commas where there should be decimal point. There are mixed measurements within the dataset. Within Height there are meters and centimeters measurements. Within the dataset for weight there are Kilograms and pounds measurements. There may be some data that are switch between the Height and the Weight.
+ Middle East & North Africa has the highest number of fatal numbers for both community and hospital infections compared to other regions. Middle East & North Africa has the highest mean and median of days to discharge compared to other regions. South Asia has the highest number of nonfatal rates for both community and hospital infections and has the lowest mean of days to discharge. East Asia & Pacific has the lowest number of fatal rates for both community and hospital infections. Europe & Central Asia has the lowest number of nonfatal rates for both community and hospital infections.
 
 In the two sample t-test there was a significant difference in the length of time between community(M = `r round(com_mean,2)` , SD=`r round(com_sd,2)`) and hospital (M=`r round(hos_mean,2)` , SD=`r round(hos_sd,2)`) acquired infections a significant difference between the two groups, t(`r round(t_test_df,2)`)=`r round(t_test_stat,2)`, p = `r scales::pvalue(t_p,0.001,add_p =FALSE)`. Patients with hospital acquired infections stay in the hospital longer compared to patients with a community acquired infection. 
 
@@ -202,9 +202,10 @@ In the Chi-squared test the relation between these variables was significant, $\
 ```{=html}
 <br>
 <p id="fig:ctnsamples", style="color:gray;", class = "caption">
+<center>
 Table 1: Demographic Data on `r nrow(analysis)` people screened for infection in the INICC database.
 </p>
-<center>
+</center>
 ```
 ```{r building-table}
 analysis %>%
@@ -212,10 +213,10 @@ analysis %>%
 ```
 ```{=html}
 <br>
-<p>
-Figure 1: Sample Size Illustration of Source Data.
+<p><center>
+Figure 1: Sample Size Illustration of Source Data on `r nrow(analysis)` participants.
 </p>
-<center>
+</center>
 ```
 
 ```{r building-histogram, fig.width=8}
@@ -228,10 +229,10 @@ analysis %>%
 ```
 ```{=html}
 <br>
-<p>
-Figure 2: Boxplot for Distribution of aquired infection by Days to Discharge 
+<p><center>
+Figure 2: Boxplot for Distribution of aquired infection by Days to Discharge on `r nrow(analysis)` participants
 </p>
-<center>
+</center>
 ```
 ```{r building-boxplot, fig.width=8}
 analysis %>%
@@ -246,10 +247,10 @@ analysis %>%
 ```
 ```{=html}
 <br>
-<p >
-Figure 3: Violin Graph for Distribution of aquired infection by Days to Discharge 
+<p ><center>
+Figure 3: Violin Graph for Distribution of aquired infection by Days to Discharge on `r nrow(analysis)` participants
 </p>
-<center>
+</center>
 ```
 ```{r building-violin, fig.width=8,warning=FALSE}
 analysis %>%
@@ -267,10 +268,10 @@ analysis %>%
 
 ```{=html}
 <br>
-<p >
-Figure 4: Sample Size Illustration of Source Data for Fatality by Days to Dishcarge
+<p ><center>
+Figure 4: Sample Size Illustration of Source Data for Fatality by Days to Dishcarge on `r nrow(analysis)` participants
 </p>
-<center>
+</center>
 ```
 
 ```{r fatality-plot, fig.width=8,warning=FALSE}
@@ -285,10 +286,10 @@ analysis %>%
 
 ```{=html}
 <br>
-<p >
-Figure 5: Boxplot of Source Data for Fatality by Days to Dishcarge
+<p ><center>
+Figure 5: Boxplot of Source Data for Fatality by Days to Dishcarge on `r nrow(analysis)` participants
 </p>
-<center>
+</center>
 ```
 
 ```{r fatality-boxplot, fig.width=8,warning=FALSE}
@@ -306,10 +307,9 @@ analysis %>%
 
 ```{=html}
 <br>
-<p >
-Figure 6: violin of Source Data for Fatality by Days to Dishcarge
-</p>
-<center>
+<p ><center>
+Figure 6: violin of Source Data for Fatality by Days to Dishcarge on `r nrow(analysis)` participants
+</p></center>
 ```
 
 ```{r fatality-violin, fig.width=8,warning=FALSE}
@@ -326,10 +326,10 @@ analysis %>%
 
 ```{=html}
 <br>
-<p >
-Figure 7: Beeswarm graph of Source Data for Fatality by Days to Dishcarge
+<p ><center>
+Figure 7: Beeswarm graph of Source Data for Fatality by Days to Dishcarge on `r nrow(analysis)` participants
 </p>
-<center>
+</center>
 ```
 
 ```{r slice-sample, fig.width=8}
