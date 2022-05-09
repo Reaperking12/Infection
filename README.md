@@ -1,5 +1,5 @@
 # Infection
-rmarkdown analysis of INICC infection data This is a research article written in R, with the research project turned into a R package. The purpose of this study was to look into the distinctions between HAIs and community/hospital acquired illnesses.
+rmarkdown analysis of INICC infection data This is a research article written in R, with the research project turned into a R package. The purpose of this study was to look into the distinctions between HAIs and community/hospital acquired illnesses. The study found that hospital acquired infection has longer stays in the hospital compared to community acquired infection. In addition, hospital acquired infections are more deadly then community acquired infection.
 ![Infection Analysis_Page_1](https://user-images.githubusercontent.com/39630737/167329372-55230786-81ee-47e4-b3b9-29f0ac2cee35.jpg)
 ![Infection Analysis_Page_2](https://user-images.githubusercontent.com/39630737/167329389-0e8443ff-9bdb-46e5-a78e-e752032be1ba.jpg)
 ![Infection Analysis_Page_3](https://user-images.githubusercontent.com/39630737/167329390-1e533833-9fbd-47df-a15b-e4416a9bde16.jpg)
